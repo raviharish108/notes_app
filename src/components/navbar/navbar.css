@@ -1,0 +1,35 @@
+.header{
+   max-width: 1920px;
+   min-height:100px;
+   overflow:hidden;
+   margin:0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: center;
+}
+.logo{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.header ul li{
+    list-style: none;
+    display:inline-block;
+    padding:0 15px;
+}
+.header ul li a{
+     text-transform: uppercase;
+     opacity: 0.7;
+}
+.header ul li a:hover{
+    opacity: 1;
+  }
+  .header ul li button{
+    padding:10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: rgb(7,25,63); 
+    margin-left: 40px;
+  }
