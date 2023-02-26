@@ -10,7 +10,7 @@ export function Forgot() {
     try{
        setbusy(true);
        const result= await axios.post(`${url}/api/user/forgot`,{"email":email});
-       await alert(result.data.message);
+       await alert(result.data.msg);
         await setbusy(false)
         }catch(err){
             await alert(err.response.data.msg);
