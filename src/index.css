@@ -20,6 +20,13 @@ a{
   text-decoration: none;
   color:whitesmoke;
 }
+.main{
+  flex:7; 
+}
+.wrapper{
+  padding: 22px 96px;
+}
+@import url("./components/navbar/navbar.css");
 @import url("./components/navbar/navbar.css");
 @import url("./pages/home/home.css");
 @import url("./pages/create/create.css");

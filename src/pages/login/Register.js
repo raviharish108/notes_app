@@ -2,24 +2,39 @@ import { url } from "../../backendurl/url";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export function Register() {
-    const [username, setusername] = useState("");
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
+    
     const [busy, setbusy] = useState(false);
     const navigate = useNavigate();
     const [msg, setmsg] = useState(false);
-    const newuser = {
-        "username": username,
-        "email": email,
-        "password": password
-    };
-    const submit = async () => {
+    const formik = useFormik({
+        initialValues: {
+          username:'',
+          email:'',
+          password:'',
+        },
+        validationSchema: Yup.object({
+          username: Yup.string()
+            .max(15, 'Must be 15 characters or less')
+            .required('specify username'),
+            email:Yup.string()
+            .required('specify email')
+            .email("invalid email address"),
+            password: Yup.string()
+            .min(6,'must be 6 characters and above')
+            .required('specify your password'),
+        }),
+        onSubmit: values => {
+          submit(values)
+        },
+      });
+    const submit = async (value) => {
         try {
             await setbusy(true);
-            await axios.post(`${url}/api/user/signup`, newuser);
+            await axios.post(`${url}/api/user/signup`, value);
             await setbusy(false);
             await alert("successfully registered");
             await navigate("/");
@@ -41,29 +56,24 @@ export function Register() {
         <div className="login_container">
             <h2>Register</h2>
             <div>{msg}</div>
-
+             <form onSubmit={formik.handleSubmit}>
             <div className="row">
                 <label for="username">username</label>
-                <input id="username" type="text" onChange={(e) => {
-                    e.preventDefault();
-                    setusername(e.target.value);
-                }} />
+                <input id="username" type="text" name="username" onChange={formik.handleChange} onBlur={formik.handleBlur}  value={formik.values.username} />
             </div>
+            {formik.touched.username && formik.errors.username ? ( <div>{formik.errors.username}</div> ) : null}
             <div className="row">
                 <label for="email">email</label>
-                <input id="email" type="email" onChange={(e) => {
-                    e.preventDefault();
-                    setemail(e.target.value);
-                }} required />
+                <input id="email" type="email" name="email" onChange={formik.handleChange} onBlur={formik.handleBlur}  value={formik.values.email}/>
             </div>
+            {formik.touched.email && formik.errors.email ? ( <div>{formik.errors.email}</div> ) : null}
             <div className="row">
                 <label for="password">password</label>
-                <input id="password" type="password" onChange={(e) => {
-                    e.preventDefault();
-                    setpassword(e.target.value);
-                }} required />
+                <input id="password" type="password"  name="password" onChange={formik.handleChange} onBlur={formik.handleBlur}  value={formik.values.password}/>
             </div>
-            <button type="submit" onClick={() => submit()}>Register</button>
+            {formik.touched.password && formik.errors.password ? ( <div>{formik.errors.password}</div> ) : null}
+            <button type="submit">Register</button>
+            </form>
             <button type="submit"><Link to="/" style={{ textDecoration: 'none', color: 'blue' }}>LogIn</Link></button>
 
         </div>

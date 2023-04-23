@@ -23,6 +23,7 @@ const { currentUser } = useSelector((state) => state.user);
           <li><Link to="/home">Home</Link></li>    
           <li><Link to="/create" >Create Note</Link></li> 
           <li><Link to="/create" >Edit</Link></li> 
+          <li><Link to="/" >LogIN</Link></li> 
           <li><button onClick={()=>{
                  logout() }}>logout</button></li>
         </ul>}

@@ -9,11 +9,13 @@ import { Changepassword } from './pages/login/Change_password';
 import { Verify } from './pages/login/Verify';
 import { ProtectRoute } from './protectRoutes';
 import { Edit } from './pages/Edit/edit';
+
  function App() {
   return (
     <div className="notes-page">
       <Navbar />
-      <Routes>
+        <div className='wrapper'>
+        <Routes>
         <Route path="/verify" element={<Verify />} />
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
@@ -25,7 +27,11 @@ import { Edit } from './pages/Edit/edit';
              <Route path="/edit/:id" element={<Edit />} />
          </Route>
       </Routes>
-    </div>
+        </div>
+             
+      </div>
+      
+  
   );
 }
 export default App;
