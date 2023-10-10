@@ -19,15 +19,15 @@ export function Changepassword() {
             const {token,id} = await queryString.parse(location.search);
             if(!token||!id){
                 await alert ("token  and id required ")
-                await navi1();
+                 navi1();
             }
             await axios.get(`${url}/api/user/changepassword?token=${token}&id=${id}`);
             await setbusy(false);
         }
         catch (err) {
             await setbusy(false);
-            await alert(err.response.data.msg);
-            await navi1();
+            // await alert(err.response.data.msg);
+             navi1();
         }
     };
     useEffect(()=>{
