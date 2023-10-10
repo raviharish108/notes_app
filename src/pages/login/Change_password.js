@@ -25,6 +25,7 @@ export function Changepassword() {
             await setbusy(false);
         }
         catch (err) {
+            await setbusy(false);
             await alert(err.response.data.msg);
             await navi1();
         }

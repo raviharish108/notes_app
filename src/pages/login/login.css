@@ -43,3 +43,14 @@
         max-width: 250px;
     }
 }
+.login_container button:hover{
+    padding:10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+   color:white;
+    margin-left: 40px;
+    margin-top:40px;
+    background-color: rgb(7,25,63);
+  }

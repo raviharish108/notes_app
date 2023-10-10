@@ -50,14 +50,7 @@ export function Login(){
 
     }
 }
-       if(busy){
-        return(
-          <div>
-            connecting...
-          </div>
-        )
-      } 
-      
+
     return(
                 <div className="login_container">
                 <h2>Login</h2>
@@ -72,10 +65,10 @@ export function Login(){
                         <input id="password" type="password" name="password" onChange={formik.handleChange} onBlur={formik.handleBlur}  value={formik.values.password}/> 
                         {formik.touched.password && formik.errors.password ? ( <div>{formik.errors.password}</div>) : null}                   
                      </div>
-                    <button type="submit">Login</button>
+                    <button type="submit"  >{busy?"loading....":"login"}</button>
                    </form>
-                    <button type="submit"><Link to="/register" style={{ textDecoration: 'none', color: 'blue' }}>Register Now</Link></button>
-                    <button type="submit"><Link to="/forgot" style={{ textDecoration: 'none', color: 'blue' }}>Forgot Password</Link></button>
+                    <button type="submit"><Link to="/register" style={{ textDecoration: 'none',color:"black"}}>Register Now</Link></button>
+                    <button type="submit"><Link to="/forgot" style={{ textDecoration: 'none',color:"black" }}>Forgot Password</Link></button>
                 
              </div>
     )
