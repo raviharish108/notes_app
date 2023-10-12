@@ -55,7 +55,8 @@ export function Create(){
                         setdate(e.target.value);
                     }}/>
                 </div>
-            <button type="submit" onClick={()=>{
+            <button type="submit" onClick={(event)=>{
+                event. preventDefault()
                 createNote();
             }}>save</button>
            </form>

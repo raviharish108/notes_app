@@ -12,17 +12,16 @@ export function Login(){
     const[busy,setbusy]=useState(false)
     const navigate=useNavigate();
     const dispatch=useDispatch()
-   
     const formik = useFormik({
         initialValues: {
-          username:'',
+          email:'',
           password:'',
         },
         validationSchema: Yup.object({
-          username: Yup.string()
-            .max(15, 'Must be 15 characters or less')
-            .required('specify username'),
-          password: Yup.string()
+              email: Yup.string()
+              .email('Invalid email address')
+              .required('specify your email id'),
+               password: Yup.string()
             .min(6,'must be 6 characters and above')
             .required('specify your password'),
         }),
@@ -32,8 +31,8 @@ export function Login(){
       });
        const login=async(value)=>{
         try{
-          loginStart();
-       await setbusy(true)
+       await loginStart()
+       await setbusy(true);
        const response= await axios.post(`${url}/api/user/login`,value);
        const token=await response.data.token;
        if(!token){
@@ -44,6 +43,7 @@ export function Login(){
        await dispatch(loginSuccess(response.data.username));
        await navigate("/home");
        }catch(err){
+        console.log(err.response);
         await setbusy(false)
         await dispatch(loginFailure());
         alert("invalid credentials")
@@ -56,9 +56,9 @@ export function Login(){
                 <h2>Login</h2>
                  <form onSubmit={formik.handleSubmit}>
                     <div className="row">
-                        <label for="username">username</label>
-                        <input id="username" type="text" name="username" onChange={formik.handleChange} onBlur={formik.handleBlur}  value={formik.values.username} /> 
-                        {formik.touched.username && formik.errors.username ? ( <div>{formik.errors.username}</div> ) : null} 
+                        <label for="email">username</label>
+                        <input id="email" type="email" name="email" onChange={formik.handleChange} onBlur={formik.handleBlur}  value={formik.values.email} /> 
+                        {formik.touched.email && formik.errors.email ? ( <div>{formik.errors.email}</div> ) : null} 
                     </div>
                     <div className="row">
                         <label for="password">password</label>
