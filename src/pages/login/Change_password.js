@@ -21,7 +21,7 @@ export function Changepassword() {
                 await alert ("token  and id required ")
                  navi1();
             }
-            await axios.get(`${url}/api/user/changepassword?token=${token}&id=${id}`);
+            await axios.get(`${url}/api/user/changepasswordverify?token=${token}&id=${id}`);
             await setbusy(false);
         }
         catch (err) {
@@ -58,7 +58,7 @@ export function Changepassword() {
     if(busy){
         return(
             <div>
-                loading...
+               verifying the link....
             </div>
         )
     }
