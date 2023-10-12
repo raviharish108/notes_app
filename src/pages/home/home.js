@@ -6,24 +6,24 @@ import axios from "axios"
 let token = localStorage.getItem('user-token');
 export function Home(){
     const [notes,setnotes]=useState([]);
-    const getnotes=async()=>{
-         try{
-        if(token){
-        const result= await axios.get(`${url}/api/notes/getnotes`,{headers: {Authorization: token}})    
-       const{data}=result;
-       setnotes(data);
-      
-        }
-    }catch(err){
-            await alert(err.response.data.message);
-          }
-    }
+   
 
     const delete_note=async(id)=>{
         await axios.delete(`${url}/api/notes/deletenote/${id}`,{headers: {Authorization: token}});
         await getnotes();
     }
    useEffect(()=>{
+    const getnotes=async()=>{
+        try{
+       if(token){
+       const result= await axios.get(`${url}/api/notes/getnotes`,{headers: {Authorization: token}})    
+      const{data}=result;
+      setnotes(data);
+       }
+   }catch(err){
+           await alert(err.response.data.message);
+         }
+   }
        getnotes();
    },[]);
     return(
