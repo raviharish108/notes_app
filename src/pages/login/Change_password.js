@@ -65,7 +65,7 @@ export function Changepassword() {
     return (
         <div className="login_container">
             <h2>change Password</h2>
-            <form onSubmit={submitt()}>
+            
                 <div className="row">
                     <label for="password" >password</label>
                     <input id="password" type="text" onChange={(e)=>setpassword(e.target.value)}   />
@@ -76,8 +76,8 @@ export function Changepassword() {
                     <input id="confirm_password" type="password" onChange={(e)=>set_confirm_password(e.target.value)} />
                    
                 </div>
-                <button type="submit">confirm</button>
-                </form>
+                <button type="submit" onClick={(e)=>{e.preventDefault();
+                                                         submitt()}}>confirm</button>
               <button type="submit"><Link to="/" style={{ textDecoration: 'none', color: 'blue' }}>LogIn</Link></button>
            
         </div>
